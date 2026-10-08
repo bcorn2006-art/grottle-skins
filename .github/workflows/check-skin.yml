@@ -1,0 +1,60 @@
+name: Check skin submission
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: check-skin-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    # Only skin submissions; skip issues BCORN has already decided on.
+    if: >-
+      contains(github.event.issue.labels.*.name, 'submission') &&
+      !contains(github.event.issue.labels.*.name, 'approved') &&
+      !contains(github.event.issue.labels.*.name, 'declined') &&
+      !contains(github.event.issue.labels.*.name, 'listed') &&
+      (github.event.action == 'opened' || github.event.changes.body != null)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Checker comes from the default branch, never from the submission.
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run checker on the attached zip
+        id: check
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          printf '%s' "$ISSUE_BODY" > "$RUNNER_TEMP/body.md"
+          set +e
+          python3 tools/check_skin.py --issue-body "$RUNNER_TEMP/body.md" \
+            --markdown "$RUNNER_TEMP/result.md" --json "$RUNNER_TEMP/result.json"
+          code=$?
+          set -e
+          if [ ! -s "$RUNNER_TEMP/result.md" ]; then
+            printf '### ❌ Automatic checks failed\n\nThe checker could not run (exit %s). BCORN will take a look.\n' "$code" > "$RUNNER_TEMP/result.md"
+          fi
+          if [ "$code" = "0" ]; then echo "result=passed" >> "$GITHUB_OUTPUT"; else echo "result=failed" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Comment result and set label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          RESULT: ${{ steps.check.outputs.result }}
+        run: |
+          gh issue comment "$NUMBER" --body-file "$RUNNER_TEMP/result.md"
+          if [ "$RESULT" = "passed" ]; then
+            gh issue edit "$NUMBER" --add-label checks-passed --remove-label checks-failed
+          else
+            gh issue edit "$NUMBER" --add-label checks-failed --remove-label checks-passed
+          fi
