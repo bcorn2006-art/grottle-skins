@@ -56,9 +56,7 @@ The issue then gets the label `checks-passed` or `checks-failed`. If it failed, 
 
 An email route is **coming soon**. Email submissions will go through the same checks and the same approval.
 
-## Listing terms (DRAFT)
-
-> **DRAFT – for BCORN's review. These terms are not final and may change before the first listing.**
+## Listing terms
 
 By submitting a skin you agree that:
 
