@@ -1,0 +1,91 @@
+name: Submit a skin
+description: Submit a Grottle™ gauge skin for listing on grottle.app (attach the zip, no git needed).
+title: "[Skin] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for making a Grottle™ skin! Fill in the form and **drag your skin zip into the "Skin zip" box**.
+        Automatic checks run on a copy of your zip and post the result here. **BCORN approves every listing**; nothing is listed on grottle.app until then.
+        Skins are pure SVG + `skin.json` + licensed fonts + locked goldens. Zips with code (`.py`, `.js`, `.sh`, `.so`, …) are rejected.
+  - type: input
+    id: skin_name
+    attributes:
+      label: Skin name
+      description: The name in your skin.json.
+      placeholder: Skin3 Retro Luxury
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The version in your skin.json.
+      placeholder: 1.0.1
+    validations:
+      required: true
+  - type: input
+    id: creator
+    attributes:
+      label: Creator handle
+      description: How you want to be credited (the creator in your skin.json).
+      placeholder: BCORN
+    validations:
+      required: true
+  - type: input
+    id: share_id
+    attributes:
+      label: Share ID
+      description: The share ID Grottle™ gave your skin when it packaged it (starts with g1-).
+      placeholder: g1-427ee9a0223c
+    validations:
+      required: true
+  - type: dropdown
+    id: licence
+    attributes:
+      label: Licence
+      description: The licence for your skin's art. Bundled fonts keep their own licence (e.g. SIL OFL 1.1).
+      options:
+        - CC BY 4.0
+        - CC BY-SA 4.0
+        - CC0 1.0 (public domain)
+        - Grottle™ free template license (same as the Grottle™ pack)
+        - Other (describe below)
+    validations:
+      required: true
+  - type: input
+    id: licence_other
+    attributes:
+      label: Licence details (if "Other")
+      description: Name the licence or describe your terms.
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description
+      description: One or two sentences about the look.
+    validations:
+      required: true
+  - type: textarea
+    id: skin_zip
+    attributes:
+      label: Skin zip
+      description: Drag your skin zip into this box (or click here and paste it). Wait until GitHub shows the uploaded link before you submit. One zip only, 8 MB or less.
+      placeholder: Drag the .zip file here
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: The skin is pure SVG + skin.json + licensed fonts + goldens, with no code of any kind.
+          required: true
+        - label: I made this skin, or I have the rights to share everything in it.
+          required: true
+        - label: I agree to the listing terms in the README (redistribution on grottle.app; takedown removes the listing but installed copies stay on users' machines).
+          required: true
+        - label: The skin's name and my creator handle do not impersonate anyone.
+          required: true
