@@ -31,7 +31,7 @@ Every submission is checked on a copy of the zip, using the rules of the release
 
 **Automatic checks (run on this repo, results posted as a comment on your issue):**
 
-- **Safe unzip:** no absolute paths, no `../` paths, no links, fewer than 200 files.
+- **Safe unzip:** no absolute paths, no `../` paths, no links, 200 files at most.
 - **Size:** the zip is 8 MB or less, and the skin is 300 KB or less without its `golden/` folder.
 - **No code:** the skin's tier is `template`, and there are no `.py`, `.js`, `.sh` or `.so` files (or other program files).
 - **Share ID:** the share ID is worked out again from the files and must match the one in `skin.json` and the one you typed in the form.
