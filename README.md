@@ -54,7 +54,7 @@ The issue then gets the label `checks-passed` or `checks-failed`. If it failed, 
 
 ## No GitHub account?
 
-Email the skin zip to **grottle@mail.grokbot.com**. Put the skin name, version, your creator handle, the share ID and the licence in the email, and say you agree to the listing terms below. Email submissions go through the same checks and the same approval: nothing is listed until BCORN approves it.
+Email the skin zip to **grottle@mail.grokbot.com**. Put the skin name, version, your creator handle, the share ID and the licence in the email, and say you agree to the listing terms below. Email submissions go through the same checks and the same approval: nothing is listed until BCORN approves it. When you email a skin, we ask for the credit name or handle to show on the listing, and your licence choice in plain words: **credit required** (list it with your credit), **no credit** (list it without a name), or **Grottle-only** (usable in Grottle™, not to be redistributed elsewhere). Your email address and your email are never posted publicly.
 
 ## Listing terms
 
