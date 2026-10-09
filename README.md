@@ -54,7 +54,7 @@ The issue then gets the label `checks-passed` or `checks-failed`. If it failed, 
 
 ## No GitHub account?
 
-An email route is **coming soon**. Email submissions will go through the same checks and the same approval.
+Email the skin zip to **grottle@mail.grokbot.com**. Put the skin name, version, your creator handle, the share ID and the licence in the email, and say you agree to the listing terms below. Email submissions go through the same checks and the same approval: nothing is listed until BCORN approves it.
 
 ## Listing terms
 
